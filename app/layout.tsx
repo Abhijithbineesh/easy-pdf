@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import BgGradient from "@/components/common/bg-gradient";
+import { ClerkProvider } from "@clerk/nextjs";
 
 
 const fontSans = FontSans({
@@ -23,6 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en">
       <body className={`${fontSans.variable} antialiased`}>
         <BgGradient/>
@@ -33,5 +35,6 @@ export default function RootLayout({
         </div>
       </body>
     </html>
+    </ClerkProvider>
   );
 }

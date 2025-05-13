@@ -5,6 +5,7 @@ import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import BgGradient from "@/components/common/bg-gradient";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "sonner";
 
 
 const fontSans = FontSans({
@@ -33,6 +34,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </div>
+        <Toaster/>
       </body>
     </html>
     </ClerkProvider>

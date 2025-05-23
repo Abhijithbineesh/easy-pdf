@@ -19,7 +19,7 @@ function HeaderSkeleton() {
 export default function LoadingSummary() {
   return (
     <div className="relative isolate min-h-screen bg-linear-to-b from-blue-50/40 to-white">
-      <BgGradient className="from-blue-400 via-blue-300 to-grey-200" />
+      <BgGradient/>
 
       <div className="container mx-auto flex flex-col gap-4">
         <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-12 lg:py-24">

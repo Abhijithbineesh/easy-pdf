@@ -19,11 +19,17 @@ export default function Header() {
         </NavLink>
       </div>
 
-      <div className="flex  lg:flex-1 md:flex-1 items-center justify-end">
+       <div className="flex lg:justify-center gap-4 lg:gap-12 lg:items-center">
+
+        <SignedIn>
+          <NavLink href="/dashboard" className=" font-bold">Your Summaries</NavLink>
+        </SignedIn>
+      </div>
+
+      <div className="flex  lg:flex-1 md:flex-1 items-center justify-end gap-3" >
         <SignedIn>
           <div className="flex gap-2 items-center font-bold">
             <NavLink href="/upload">Upload your pdf</NavLink>
-            <div>Pro</div>
             <SignedIn>
             <UserButton/>
             </SignedIn>

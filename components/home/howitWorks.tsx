@@ -1,5 +1,6 @@
 import { BrainCircuit, DockIcon, FileAxis3d } from "lucide-react";
 import { ReactNode } from "react";
+import { MotionH2, MotionH3 } from "../common/motion-wrapper";
 
 export default function HowItWorks() {
   type Step = {
@@ -33,13 +34,20 @@ export default function HowItWorks() {
     <section className="relative overflow-hidden">
       <div className="py-12 lg:py-24 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-12">
         <div className="text-center mb-16">
-          <h2 className="text-blue-600 font-bold text-xl uppercase mb-4 ">
+          <MotionH2 initial={{opacity:1,y:0}} 
+          whileInView={{opacity:1,y:0}}
+          transition={{duration:0.5,ease:"easeInOut"}}
+          className="text-blue-600 font-bold text-xl uppercase mb-4 ">
             HOW IT WORKS
-          </h2>
-          <h3 className="font-bold text-3xl max-w-2xl mx-auto">
+          </MotionH2>
+          <MotionH3 
+          initial={{opacity:1,y:0}} 
+          whileInView={{opacity:1,y:0}}
+          transition={{duration:0.5,ease:"easeInOut"}}
+          className="font-bold text-3xl max-w-2xl mx-auto">
             Transform any PDF into an easy-to-digest summary in three simple
             steps
-          </h3>
+          </MotionH3>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl  mx-auto relative">

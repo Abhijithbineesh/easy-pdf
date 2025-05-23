@@ -12,20 +12,14 @@ import {
 } from "@/actions/upload-actions";
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import  LoadingSkeleton  from "./upload-form-loading-skeleton";
-//schema with zod
+import LoadingSkeleton from "./upload-form-loading-skeleton";
 
+// Zod validation schema
 const schema = z.object({
   file: z
     .instanceof(File, { message: "Invalid file" })
-    .refine(
-      (file) => file.size <= 20 * 1024 * 1024,
-      "File size must be less than 20MB"
-    )
-    .refine(
-      (file) => file.type.startsWith("application/pdf"),
-      "File must be a PDF"
-    ),
+    .refine((file) => file.size <= 20 * 1024 * 1024, "File size must be less than 20MB")
+    .refine((file) => file.type.startsWith("application/pdf"), "File must be a PDF"),
 });
 
 export default function UploadForm() {
@@ -39,7 +33,7 @@ export default function UploadForm() {
     },
     onUploadError: (err) => {
       console.log("error occurred while uploading", err);
-      toast(" Error occurred while uploading", {
+      toast("❌ Error occurred while uploading", {
         description: err.message,
       });
     },
@@ -56,14 +50,12 @@ export default function UploadForm() {
       const formData = new FormData(e.currentTarget);
       const file = formData.get("file") as File;
 
-      //validating the fields
+      // Validate fields
       const validatedFields = schema.safeParse({ file });
-      
       if (!validatedFields.success) {
         toast("❌ Something went wrong", {
           description:
-            validatedFields.error.flatten().fieldErrors.file?.[0] ??
-            "Invalid file.",
+            validatedFields.error.flatten().fieldErrors.file?.[0] ?? "Invalid file.",
           style: { color: "red" },
         });
         setIsLoading(false);
@@ -71,14 +63,12 @@ export default function UploadForm() {
       }
 
       toast("📄 Uploading PDF...", {
-        description: "We are uploading your PDF! ",
+        description: "We are uploading your PDF!",
       });
-
-      //upload the file to the uploadthing
 
       const uploadResponse = await startUpload([file]);
       if (!uploadResponse) {
-        toast("Something went wrong", {
+        toast("❌ Something went wrong", {
           description: "Please use a different file",
           style: { color: "red" },
         });
@@ -87,28 +77,25 @@ export default function UploadForm() {
       }
 
       toast("⏳ Processing PDF...", {
-        description: "Hang tight! Our AI is reading through your document! ✨",
+        description: "Hang tight! Our AI is reading your document ✨",
       });
 
-      const uploadFileUrl=uploadResponse[0].serverData.fileUrl;
+      const uploadFileUrl = uploadResponse[0].serverData.fileUrl;
 
-      //parse the pdf using lang chain
       const result = await generatePdfSummary({
-        fileUrl:uploadFileUrl,
-        fileName:file.name,
+        fileUrl: uploadFileUrl,
+        fileName: file.name,
       });
 
-      const { data = null, message = null } = result || {};
-
+      const { data = null } = result || {};
       if (data) {
         let storeResult: any;
 
         toast("💾 Saving PDF...", {
-          description: "Hang tight! We are saving your summary! ✨",
+          description: "Hang tight! We are saving your summary ✨",
         });
 
         if (data.summary) {
-          // save the summary to the database
           storeResult = await storePdfSummaryAction({
             summary: data.summary,
             fileUrl: uploadFileUrl,
@@ -117,8 +104,7 @@ export default function UploadForm() {
           });
 
           toast("✨ Summary Generated!", {
-            description:
-              "Your summary has been successfully summarized and saved",
+            description: "Your summary has been saved successfully!",
           });
 
           formRef.current?.reset();
@@ -126,7 +112,6 @@ export default function UploadForm() {
         }
       }
     } catch (error) {
-      setIsLoading(false);
       console.error("error occurred", error);
       formRef.current?.reset();
     } finally {
@@ -152,24 +137,20 @@ export default function UploadForm() {
         ref={formRef}
         onSubmit={handleSubmit}
       />
+
       {isLoading && (
         <>
           <div className="relative">
-            <div
-              className="absolute inset-0 flex items-center"
-              aria-hidden="true"
-            >
+            <div className="absolute inset-0 flex items-center" aria-hidden="true">
               <div className="w-full border-t border-gray-200 dark:border-gray-800" />
             </div>
-
             <div className="relative flex justify-center">
               <span className="bg-background px-3 text-muted-foreground text-sm">
                 Processing
               </span>
             </div>
           </div>
-
-          <LoadingSkeleton/>
+          <LoadingSkeleton />
         </>
       )}
     </div>

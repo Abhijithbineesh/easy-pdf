@@ -23,7 +23,7 @@ export default async function DashboardPage() {
 
   return (
     <main className="min-h-screen">
-      <BgGradient className="from-emerald-200 via-teal-200 to-cyan-200" />
+      <BgGradient/>
       <MotionDiv
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

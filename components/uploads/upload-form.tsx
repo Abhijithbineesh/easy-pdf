@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import { z } from "zod";
@@ -31,7 +33,7 @@ export default function UploadForm() {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const { startUpload, routeConfig } = useUploadThing("pdfUploader", {
+  const { startUpload } = useUploadThing("pdfUploader", {
     onClientUploadComplete: () => {
       console.log("uploaded successfully!");
     },

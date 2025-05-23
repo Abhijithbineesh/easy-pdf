@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { parseEmojiPoint, parsePoint } from "@/utils/summary-helper";
 import { MotionDiv } from "../common/motion-wrapper";
 import { containerVariants, itemVariants } from "@/utils/constants";

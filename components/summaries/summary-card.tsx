@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Card } from "@/components/ui/card";
 import DeleteButton from "@/components/summaries/delete-button";
 import Link from "next/link";

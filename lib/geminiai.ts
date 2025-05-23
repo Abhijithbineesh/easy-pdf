@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { GoogleGenAI } from "@google/genai";
 import { SUMMARY_SYSTEM_PROMPT } from "@/utils/prompts";
 

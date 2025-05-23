@@ -37,7 +37,7 @@ export default function HeroSection() {
         </Badge>
       </MotionDiv>
 
-      <MotionH1 variant={itemVariants} className="font-bold py-6 text-center">
+      <MotionH1 variants={itemVariants} className="font-bold py-6 text-center">
         Transform your PDFs into well structured{" "}
         <span className="relative inline-block">
           <span className="relative z-10 px-2">summaries</span>
@@ -48,12 +48,12 @@ export default function HeroSection() {
         </span>
         quickly and efficiently.
       </MotionH1>
-      <MotionH2 variant={itemVariants}    className="text lg sm:text-xl lg:text-2xl text-center px-4 lg:px-0 lg:max-w-4xl text-gray-600">
+      <MotionH2 variants={itemVariants}    className="text lg sm:text-xl lg:text-2xl text-center px-4 lg:px-0 lg:max-w-4xl text-gray-600">
         Turn your document into a stunning short reel effortlessly
       </MotionH2>
 
    
-      <MotionDiv variant={itemVariants} whileHover={buttonVariants} >
+      <MotionDiv variants={itemVariants} whileHover={buttonVariants} >
         <Button
           variant={"link"}
           className="text-blue-400  mt-6  text-base sm:text-lg lg:text-xl  rounded-full px-8 sm:px-10 lg:px-12 py-6 sm:py-7 lg:py-8 lg:mt-16 hover:no-underline hover:bg-indigo-950 hover:text-blue-300"

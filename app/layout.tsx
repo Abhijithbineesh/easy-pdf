@@ -27,6 +27,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
     <html lang="en">
+       <head>
+          <link rel="icon" type="image/svg+xml" href="/easy.svg" />
+        </head>
       <body className={`${fontSans.variable} antialiased`}>
         <BgGradient/>
         <div className="relative min-h-screen flex flex-col">
